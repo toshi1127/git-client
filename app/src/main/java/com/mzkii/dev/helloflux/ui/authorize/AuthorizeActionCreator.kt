@@ -9,18 +9,18 @@ import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 
-class AuthorizeActionCreator(
+class AuthorizeActionCreator( // Authorizeアクションクラスを作成するActionCreator
     private val repository: AuthorizeRepository,
     dispatcher: Dispatcher
-) : ActionCreator<AuthorizeAction>(dispatcher) {
+) : ActionCreator<AuthorizeAction>(dispatcher) { // dispatcherがコンストラクタの引数
     fun authorize(intent: Intent) {
         val uri = intent.data ?: return
         if (!uri.toString().startsWith(BuildConfig.REDIRECT_URI)) return
-        repository
-            .getAccessToken(uri.getQueryParameter("code")!!)
+        repository // APIを叩くため、別スレッドで実行
+            .getAccessToken(uri.getQueryParameter("code")!!) // callbackして取得したIntent中に含まれるcodeをrepository.getAccessTokenに渡し、アクセストークンを取得
             .subscribeOn(Schedulers.io())
             .subscribeBy(
-                onSuccess = { dispatch(AuthorizeAction.Authorize(it)) },
+                onSuccess = { dispatch(AuthorizeAction.Authorize(it)) }, //AuthorizeActionの発火
                 onError = { Timber.e(it) }
             )
     }
