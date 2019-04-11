@@ -8,12 +8,14 @@ import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mzkii.dev.githubgistclient.data.preferences.AppSetting
 import com.mzkii.dev.helloflux.R
 import com.mzkii.dev.helloflux.databinding.ActivityMainBinding
 import com.mzkii.dev.helloflux.observe
 import com.mzkii.dev.helloflux.ui.FetchMoreScrollListener
 import com.mzkii.dev.helloflux.ui.authorize.AuthorizeActivity
+import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
@@ -44,6 +46,7 @@ class MainActivity : AppCompatActivity() {
         observeState()
         isLoading = true
         actionCreator.getMyRepositoryList(1)
+        bottom_navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }
 
     private fun initView() {
@@ -70,5 +73,30 @@ class MainActivity : AppCompatActivity() {
         store.loadedRepositoryListState.observe(this) {
             repositoryAdapter.submitList(it.toList())
         }
+    }
+
+    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+
+        when (item.itemId) {
+            R.id.navigation_dashboard -> {
+                val fragment = SearchFragment()
+                supportFragmentManager.beginTransaction().replace(R.id.frameLayout, fragment, fragment.javaClass.getSimpleName())
+                    .commit()
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.navigation_home -> {
+                val fragment = HomeFragment()
+                supportFragmentManager.beginTransaction().replace(R.id.frameLayout, fragment, fragment.javaClass.getSimpleName())
+                    .commit()
+                return@OnNavigationItemSelectedListener true
+            }
+//            R.id.navigation_notifications -> {
+//                val fragment = SearchFragment()
+//                supportFragmentManager.beginTransaction().replace(R.id.frameLayout, fragment, fragment.javaClass.getSimpleName())
+//                    .commit()
+//                return@OnNavigationItemSelectedListener true
+//            }
+        }
+        false
     }
 }
