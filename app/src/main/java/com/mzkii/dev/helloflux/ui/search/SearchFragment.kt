@@ -1,4 +1,4 @@
-package com.mzkii.dev.helloflux.ui.home
+package com.mzkii.dev.helloflux.ui.search
 
 import android.os.Bundle
 import android.view.LayoutInflater

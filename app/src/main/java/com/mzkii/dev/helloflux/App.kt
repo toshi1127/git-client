@@ -9,6 +9,7 @@ import com.mzkii.dev.helloflux.data.api.AuthorizeApi
 import com.mzkii.dev.helloflux.data.api.GithubApi
 import com.mzkii.dev.helloflux.data.repository.AuthorizeRepository
 import com.mzkii.dev.helloflux.data.repository.GithubRepository
+import com.mzkii.dev.helloflux.data.repository.SearchRepository
 import com.mzkii.dev.helloflux.ui.authorize.AuthorizeActionCreator
 import com.mzkii.dev.helloflux.ui.authorize.AuthorizeStore
 import com.mzkii.dev.helloflux.ui.home.HomeActionCreator
@@ -56,6 +57,7 @@ class App : Application() {
         }
         single { AuthorizeRepository(get()) }
         single { GithubRepository(get()) }
+        single { SearchRepository(get()) }
 
     }
 
