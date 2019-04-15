@@ -30,20 +30,21 @@ class HomeFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        print("onCreateView")
         val view = inflater.inflate(R.layout.home_activity, container, false)
         initView(view.recycler_view)
         return view
     }
 
     private fun initView(recycler_view: RecyclerView) {
-        val recyclerView = recycler_view
-        with(recyclerView) {
-            recyclerView.adapter = repositoryAdapter
-            recyclerView.layoutManager = LinearLayoutManager(activity)
+        with(recycler_view) {
+            recycler_view.adapter = repositoryAdapter
+            recycler_view.layoutManager = LinearLayoutManager(activity)
             addOnScrollListener(object : FetchMoreScrollListener() {
                 override fun onLoadMore() {
                     if (!isLoading && store.canFetchMore) {
                         isLoading = true
+                        print("initView")
                         actionCreator.getMyRepositoryList(store.pageNum)
                     }
                 }

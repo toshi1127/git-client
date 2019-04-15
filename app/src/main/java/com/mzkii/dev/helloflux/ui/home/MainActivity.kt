@@ -79,6 +79,7 @@ class MainActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.navigation_home -> {
                 val fragment = HomeFragment()
+                print("mOnNavigationItemSelectedListener")
                 supportFragmentManager.beginTransaction().replace(R.id.frameLayout, fragment, fragment.javaClass.getSimpleName())
                     .commit()
                 return@OnNavigationItemSelectedListener true

@@ -36,6 +36,8 @@ class HomeStore(dispatcher: Dispatcher) : Store(dispatcher) {
             is HomeAction.LoadRepositoryList -> {
                 canFetchMore = action.repositoryList.isNotEmpty()
                 pageNum++
+                print("action.repositoryList")
+                print(action.repositoryList)
                 repositoryList.addAll(action.repositoryList)
                 loadedRepositoryListState.postValue(repositoryList)
             }
