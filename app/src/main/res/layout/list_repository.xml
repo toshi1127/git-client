@@ -2,22 +2,6 @@
 <layout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
-    <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:orientation="vertical">-->
-
-        <!--&lt;!&ndash;<com.google.android.material.bottomnavigation.BottomNavigationView&ndash;&gt;-->
-                <!--&lt;!&ndash;android:id="@+id/bottom_navigation"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:layout_height="56dp"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:layout_gravity="bottom"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:layout_weight="1"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:background="@color/white"&ndash;&gt;-->
-                <!--&lt;!&ndash;app:itemIconTint="@drawable/bottom_navigation_colors"&ndash;&gt;-->
-                <!--&lt;!&ndash;app:itemTextColor="@drawable/bottom_navigation_colors"&ndash;&gt;-->
-                <!--&lt;!&ndash;app:menu="@menu/navigation"/>&ndash;&gt;-->
-    <!--</LinearLayout>-->
     <androidx.cardview.widget.CardView
             android:id="@+id/card"
             android:foreground="?android:attr/selectableItemBackground"
